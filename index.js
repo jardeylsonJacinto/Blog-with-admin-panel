@@ -1,20 +1,24 @@
 const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const connection = require("./database/database");
 const dotenv = require("dotenv");
+const app = express();
 dotenv.config();
+
+const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./articles/ArticlesController");
+const connection = require("./database/database");
+const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 3000;
 
 // View Engine
 app.set('view engine', 'ejs');
-
 // Static
 app.use(express.static("public"));
-
 // Body parser para dados codificados como URL
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 // Database
 connection.authenticate()
