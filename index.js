@@ -7,6 +7,8 @@ const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
 const connection = require("./database/database");
 const bodyParser = require("body-parser");
+const Article  = require("./articles/Article");
+const Category = require("./categories/Category");
 
 const port = process.env.PORT || 3000;
 
