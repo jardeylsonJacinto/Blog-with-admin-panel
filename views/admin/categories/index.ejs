@@ -1,35 +1,50 @@
 <%- include("../../partials/header.ejs") %>
-<%- include("../../partials/navbar.ejs") %>
+  <%- include("../../partials/navbar.ejs") %>
 
-<div class="container">
-  <hr>
-  <h2>Categorias</h2>
-  <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
-  <hr>
+    <div class="container">
+      <hr>
+      <h2>Categorias</h2>
+      <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
+      <hr>
 
-  <table class="table table-light table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Título</th>
-        <th scope="col">Slug</th>
-        <th scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% categories.forEach( category => { %>
-        <tr>
-          <td><%= category.id %></td>
-          <td><%= category.title %></td>
-          <td><%= category.slug %></td>
-          <td>
-            <a href="" class="btn btn-outline-warning"><ion-icon size="small" name="create-outline"></ion-icon>Editar</a>
-            <a href="" class="btn btn-outline-danger"><ion-icon size="small" name="trash-outline"></ion-icon>Deletar</a>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-</div>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Título</th>
+            <th scope="col">Slug</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach( category=> { %>
+            <tr>
+              <td>
+                <%= category.id %>
+              </td>
+              <td>
+                <%= category.title %>
+              </td>
+              <td>
+                <%= category.slug %>
+              </td>
+              <td>
+                <form method="POST" action="/categories/delete" style="display: inline;">
+                  <input type="hidden" name="id" value="<%= category.id %>">
+                  <button class="btn btn-outline-warning"><ion-icon size="small"
+                      name="create-outline"></ion-icon>Editar</button>
+                </form>
 
-<%- include("../../partials/footer.ejs") %>
+                <form method="POST" action="/categories/delete" style="display: inline;">
+                  <input type="hidden" name="id" value="<%= category.id %>">
+                  <button class="btn btn-outline-danger"><ion-icon size="small"
+                      name="trash-outline"></ion-icon>Deletar</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+    <%- include("../../partials/footer.ejs") %>
