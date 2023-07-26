@@ -35,7 +35,7 @@
                       name="create-outline"></ion-icon>Editar</button>
                 </form>
 
-                <form method="POST" action="/categories/delete" style="display: inline;">
+                <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirDelete(event, this)">
                   <input type="hidden" name="id" value="<%= category.id %>">
                   <button class="btn btn-outline-danger"><ion-icon size="small"
                       name="trash-outline"></ion-icon>Deletar</button>
@@ -46,5 +46,13 @@
         </tbody>
       </table>
     </div>
-
+<script>
+  function confirDelete(event, form) {
+    event.preventDefault();
+    let decision = confirm("Você deseja deletar essa categoria?");
+    if (decision) {
+      form.submit();
+    }
+  }
+</script>
     <%- include("../../partials/footer.ejs") %>
