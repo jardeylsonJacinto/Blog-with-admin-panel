@@ -29,13 +29,13 @@
                 <%= category.slug %>
               </td>
               <td>
-                <form method="POST" action="/categories/delete" style="display: inline;">
-                  <input type="hidden" name="id" value="<%= category.id %>">
-                  <button class="btn btn-outline-warning"><ion-icon size="small"
-                      name="create-outline"></ion-icon>Editar</button>
-                </form>
 
-                <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirDelete(event, this)">
+                <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-outline-warning"><ion-icon size="small"
+                    name="create-outline"></ion-icon>Editar</a>
+
+
+                <form method="POST" action="/categories/delete" style="display: inline;"
+                  onsubmit="confirDelete(event, this)">
                   <input type="hidden" name="id" value="<%= category.id %>">
                   <button class="btn btn-outline-danger"><ion-icon size="small"
                       name="trash-outline"></ion-icon>Deletar</button>
@@ -46,13 +46,13 @@
         </tbody>
       </table>
     </div>
-<script>
-  function confirDelete(event, form) {
-    event.preventDefault();
-    let decision = confirm("Você deseja deletar essa categoria?");
-    if (decision) {
-      form.submit();
-    }
-  }
-</script>
+    <script>
+      function confirDelete(event, form) {
+        event.preventDefault();
+        let decision = confirm("Você deseja deletar essa categoria?");
+        if (decision) {
+          form.submit();
+        }
+      }
+    </script>
     <%- include("../../partials/footer.ejs") %>
