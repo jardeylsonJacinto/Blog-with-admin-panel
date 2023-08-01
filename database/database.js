@@ -9,7 +9,8 @@ const dbPass = process.env.DB_PASS;
 
 const connection = new Sequelize(dbName, dbUser, dbPass, {
   host: "localhost",
-  dialect: "mysql"
+  dialect: "mysql",
+  timezone: "-03:00"
 });
 
 module.exports = connection;
