@@ -5,7 +5,11 @@ const Article = require("./Article");
 const slugify = require("slugify");
 
 router.get("/admin/articles", (req, res) => {
-  res.render("admin/articles/index");
+  Article.findAll({
+    include: [{ model: Category }]
+  }).then((articles) => {
+    res.render("admin/articles/index", { articles: articles });
+  });
 });
 
 router.get("/admin/articles/new", (req, res) => {
@@ -23,9 +27,9 @@ router.post("/articles/save", (req, res) => {
     title: title,
     slug: slugify(title),
     body: body,
-    categoryId: category
+    categoryId: category,
   }).then(() => {
-  res.redirect("/admin/articles");
+    res.redirect("/admin/articles");
   });
 });
 
