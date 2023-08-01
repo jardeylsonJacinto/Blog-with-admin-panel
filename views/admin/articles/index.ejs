@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <% articles.forEach( article => { %>
+          <% articles.forEach( article=> { %>
             <tr>
               <td>
                 <%= article.id %>
@@ -33,7 +33,12 @@
                 <%= article.category.title %>
               </td>
               <td>
-                Ações
+                <form method="POST" action="/articles/delete" style="display: inline;"
+                  onsubmit="confirDelete(event, this)">
+                  <input type="hidden" name="id" value="<%= article.id %>">
+                  <button class="btn btn-outline-danger"><ion-icon size="small"
+                      name="trash-outline"></ion-icon>Deletar</button>
+                </form>
               </td>
             </tr>
             <% }) %>
@@ -43,7 +48,7 @@
     <script>
       function confirDelete(event, form) {
         event.preventDefault();
-        let decision = confirm("Você deseja deletar essa categoria?");
+        let decision = confirm("Você deseja deletar esse artigo?");
         if (decision) {
           form.submit();
         }
