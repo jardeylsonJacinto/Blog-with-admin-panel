@@ -7,13 +7,13 @@ const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
 const connection = require("./database/database");
 const bodyParser = require("body-parser");
-const Article  = require("./articles/Article");
+const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 
 const port = process.env.PORT || 3000;
 
 // View Engine
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 // Static
 app.use(express.static("public"));
 // Body parser para dados codificados como URL
@@ -23,34 +23,42 @@ app.use("/", categoriesController);
 app.use("/", articlesController);
 
 // Database
-connection.authenticate()
+connection
+  .authenticate()
   .then(() => {
     console.log("Connected successfully!");
-  }).catch((error) => {
+  })
+  .catch((error) => {
     console.log("Error: " + error);
   });
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
   Article.findAll({
-    order: [["id", "DESC"]]
-  }).then(articles => {
-    res.render("index", { articles: articles });
+    order: [["id", "DESC"]],
+  }).then((articles) => {
+    Category.findAll().then((categories) => {
+      res.render("index", { articles: articles, categories: categories });
+    });
   });
 });
 
 app.get("/:slug", (req, res) => {
   let slug = req.params.slug;
   Article.findOne({
-    where: { slug: slug}
-  }).then(article => {
-    if (article != undefined) {
-      res.render("article", { article: article});
-    }else {
+    where: { slug: slug },
+  })
+    .then((article) => {
+      if (article != undefined) {
+        Category.findAll().then((categories) => {
+          res.render("article", { articles: articles, categories: categories });
+        });
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch((err) => {
       res.redirect("/");
-    }
-  }).catch(err => {
-    res.redirect("/");
-  });
+    });
 });
 
 app.listen(port, () => {
