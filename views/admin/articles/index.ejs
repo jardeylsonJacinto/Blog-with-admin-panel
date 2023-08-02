@@ -33,6 +33,9 @@
                 <%= article.category.title %>
               </td>
               <td>
+                <a href="/admin/articles/edit/<%=article.id%>" class="btn btn-outline-warning"><ion-icon
+                  size="small" name="create-outline"></ion-icon>Editar</a>
+
                 <form method="POST" action="/articles/delete" style="display: inline;"
                   onsubmit="confirDelete(event, this)">
                   <input type="hidden" name="id" value="<%= article.id %>">
