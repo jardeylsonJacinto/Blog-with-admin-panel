@@ -5,34 +5,48 @@
       <hr>
       <div class="card">
         <div class="card-header">
-          <h2>Editar Artigo</h2>
+          <h2>Editar artigo</h2>
         </div>
         <div class="card-body">
           <form method="POST" action="/articles/update">
-            <input class="form-control" type="text" name="title" placeholder="Defina o novo título do artigo"><br>
-            <textarea name="body" class="form-control" placeholder="Escreva aqui o artigo!" id="article"></textarea><br>
-            <label>Categoria:</label><br><br>
+            <input type="hidden" value="<%= article.id %>" name="id">
+            <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo"
+              value="<%= article.title %>"><br>
+            <textarea class="form-control" placeholder="Escreva o artigo aqui!" name="body" id="article"></textarea><br>
+            <label>Categoria</label>
             <select name="category" class="form-control">
-              <% categories.forEach( category=> { %>
+              <% categories.forEach((category)=> { %>
                 <option value="<%= category.id %>">
                   <%= category.title %>
                 </option>
                 <% }) %>
-            </select><br>
+            </select>
+            <br>
             <button class="btn btn-success">Atualizar</button>
           </form>
         </div>
       </div>
     </div>
 
+    <div id="content" style="display: none;">
+      <%- article.body %>
+    </div>
+
     <%- include("../../partials/footer.ejs") %>
+
       <script src="/tinymce/tinymce.min.js"></script>
       <script>
+
         tinymce.init({
-          language: "pt_BR",
+          language: 'pt_BR',
           selector: "#article",
+          activeEditor: true,
           plugins: [
-            'lists', 'advlist', 'autolink', 'link', 'image', 'print', 'preview', 'hr', 'searchreplace', 'wordcount', 'fullscreen', 'insertdatetime', 'media', 'save', 'table', 'paste', 'emoticons'
-          ]
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+          ],
+          init_instance_callback: () => {
+            tinymce.get("article").setContent($("#content").html())
+          }
         })
+
       </script>

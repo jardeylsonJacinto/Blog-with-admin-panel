@@ -6,7 +6,7 @@ const slugify = require("slugify");
 
 router.get("/admin/articles", (req, res) => {
   Article.findAll({
-    include: [{ model: Category }]
+    include: [{ model: Category }],
   }).then((articles) => {
     res.render("admin/articles/index", { articles: articles });
   });
@@ -39,33 +39,36 @@ router.post("/articles/delete", (req, res) => {
     if (!isNaN(id)) {
       Article.destroy({
         where: {
-          id: id
-        }
+          id: id,
+        },
       }).then(() => {
         res.redirect("/admin/articles");
       });
-    }else{
+    } else {
       res.redirect("/admin/articles");
     }
-  }else{
+  } else {
     res.redirect("/admin/articles");
   }
 });
 
 router.get("/admin/articles/edit/:id", (req, res) => {
   let id = req.params.id;
-
-  Article.findByPk(id).then(article => {
-    if (article != undefined) {
-      Category.findAll().then(categories => {
-        res.render("admin/articles/edit", { categories: categories});
-      });
-    } else {
+  Article.findByPk(id)
+    .then((article) => {
+      if (article != undefined) {
+        Category.findAll().then((categories) => {
+          res.render("admin/articles/edit", {
+            categories: categories,
+            article: article,
+          });
+        });
+      } else {
+        res.redirect("/");
+      }
+    }).catch((err) => {
       res.redirect("/");
-    }
-  }).catch(err => {
-    res.redirect("/");
-  });
+    });
 });
 
 module.exports = router;

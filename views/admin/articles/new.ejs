@@ -12,7 +12,7 @@
             <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo"><br>
             <textarea name="body" class="form-control" placeholder="Escreva aqui o artigo!" id="article"></textarea><br>
             <select name="category" class="form-control">
-              <% categories.forEach( category=> { %>
+              <% categories.forEach( category => { %>
                 <option value="<%= category.id %>"> <%= category.title %> </option>
               <% }) %>
             </select><br>
