@@ -36,6 +36,21 @@ app.get("/", function(req, res){
   });
 });
 
+app.get("/:slug", (req, res) => {
+  let slug = req.params.slug;
+  Article.findOne({
+    where: { slug: slug}
+  }).then(article => {
+    if (article != undefined) {
+      res.render("article", { articles: article});
+    }else {
+      res.redirect("/");
+    }
+  }).catch(err => {
+    res.redirect("/");
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server is running in port ${port}`);
 });
