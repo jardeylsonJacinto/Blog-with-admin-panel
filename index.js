@@ -31,7 +31,9 @@ connection.authenticate()
   });
 
 app.get("/", function(req, res){
-  Article.findAll().then(articles => {
+  Article.findAll({
+    order: [["id", "DESC"]]
+  }).then(articles => {
     res.render("index", { articles: articles });
   });
 });
@@ -42,7 +44,7 @@ app.get("/:slug", (req, res) => {
     where: { slug: slug}
   }).then(article => {
     if (article != undefined) {
-      res.render("article", { articles: article});
+      res.render("article", { article: article});
     }else {
       res.redirect("/");
     }
