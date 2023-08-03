@@ -66,8 +66,36 @@ router.get("/admin/articles/edit/:id", (req, res) => {
       } else {
         res.redirect("/");
       }
-    }).catch((err) => {
+    })
+    .catch((err) => {
       res.redirect("/");
+    });
+});
+
+router.post("/articles/update", (req, res) => {
+  let id = req.body.id;
+  let title = req.body.title;
+  let body = req.body.body;
+  let category = req.body.category;
+
+  Article.update(
+    {
+      title: title,
+      body: body,
+      categoryId: category.id,
+      slug: slugify(title),
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  )
+    .then((article) => {
+      res.redirect("/admin/articles");
+    })
+    .catch((err) => {
+      res.redirect("/")
     });
 });
 
