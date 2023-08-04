@@ -35,6 +35,7 @@ connection
 app.get("/", function (req, res) {
   Article.findAll({
     order: [["id", "DESC"]],
+    limit: 4
   }).then((articles) => {
     Category.findAll().then((categories) => {
       res.render("index", { articles: articles, categories: categories });
@@ -50,7 +51,7 @@ app.get("/:slug", (req, res) => {
     .then((article) => {
       if (article != undefined) {
         Category.findAll().then((categories) => {
-          res.render("article", { articles: articles, categories: categories });
+          res.render("article", { article: article, categories: categories });
         });
       } else {
         res.redirect("/");
