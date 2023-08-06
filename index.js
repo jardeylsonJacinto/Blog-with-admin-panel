@@ -8,6 +8,7 @@ const articlesController = require("./articles/ArticlesController");
 const userController = require("./users/UserController");
 const connection = require("./database/database");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
 const User = require("./users/User");
@@ -16,6 +17,10 @@ const port = process.env.PORT || 3000;
 
 // View Engine
 app.set("view engine", "ejs");
+// Sessions
+app.use(session({
+  secret: "mkopiouib", cookie: { maxAge: 30000000 }
+}))
 // Static
 app.use(express.static("public"));
 // Body parser para dados codificados como URL
