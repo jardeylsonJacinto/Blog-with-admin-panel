@@ -5,10 +5,12 @@ dotenv.config();
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const userController = require("./users/UserController");
 const connection = require("./database/database");
 const bodyParser = require("body-parser");
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
 
 const port = process.env.PORT || 3000;
 
@@ -21,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", userController);
 
 // Database
 connection
