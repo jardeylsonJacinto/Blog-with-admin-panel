@@ -1,20 +1,48 @@
 <%- include("../../partials/header.ejs") %>
-  <%- include("../../partials/navbar.ejs") %>
 
-<div class="container">
-  <hr>
-  <div class="card mt-5">
-    <div class="card-header">
-      <h2>Criação de usuário</h2>
-    </div>
-    <div class="card-body">
-      <form action="/users/create" method="POST">
-        <input type="email" class="form-control" name="email" placeholder="email@exemplo.com"><br>
-        <input type="password" class="form-control" name="password" placeholder="Insira a senha"><br>
-        <button type="submit" class="btn btn-success btn-lg btn-block">Criar</button>
-      </form>
+<body class="d-flex align-items-center justify-content-center vh-100" style="background-image: url('../../../img/SvWWN.png'); background-size: cover;">
+  <div class="container")>
+    <div class="row my-5 py-5">
+      <div class="col-lg-12 col-sm-7 col-md-6 m-auto ">
+        <div class="card border-0 shadow">
+          <div class="card-header text-bg-secondary d-flex justify-content-between">
+            <div class="">
+              <a href="/" class="nav-link fs-5">
+                Blog
+              </a>
+            </div>
+            <div class="d-flex">
+              <a class="nav-link btn btn-dark mx-2 py-1 px-3" href="/">Voltar</a>
+              <a class="nav-link btn btn-success mx-2 py-1 px-3" href="/login">Logar</a>
+            </div>
+          </div>
+
+          <div class="card-body text-bg-dark d-flex justify-content-around" style="height: 350px;">
+            <div class="w-25">
+              <img style="height: 290px;" src="../../../img/create.svg" alt="">
+              <a class="nav-link" href="https://storyset.com/phone">Phone illustrations by Storyset</a>
+            </div>
+            <div class="w-50">
+              <form action="/users/create" method="POST">
+                <h3>Criar Conta</h3>
+                <label class="mt-2" for="email">E-mail :</label>
+                <input id="email" type="email" name="email" class="form-control my-1 py-2" placeholder="Exemplo@gmail.com" />
+                <label class="mt-2" for="password">Password :</label>
+                <input id="password" type="password" name="password" id="" class="form-control my-1 py-2" placeholder="Password" />
+                <div class="text-center mt-3">
+                  <button type="submit" class=" w-100 btn btn-secondary btn-block">Criar</button>
+                  <a href="/login" class="nav-link mt-2">Já possui uma conta ?</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</body>
+  
 
-<%- include("../../partials/footer.ejs") %>
+
+
+  <%- include("../../partials/footer.ejs") %>
