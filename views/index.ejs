@@ -1,31 +1,46 @@
 <%- include("partials/header.ejs") %>
-<%- include("partials/homeNavbar.ejs") %>
+  <%- include("partials/homeNavbar.ejs") %>
 
-  <body class="text-bg-dark">
-    <div class="container">
-      <div class="position-relative d-flex justify-content-center">
-        <h1 class="display-1">BEM VINDO!</h1>
-      </div>
-      <% articles.forEach( article => { %>
-        <div class="card">
-          <div class="card-header">
-            <h2><%= article.title %></h2>
-          </div>
-          <div class="card-body">
-            <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+    <body class="text-bg-dark">
+      <div class="container w-100 card shadow" style="margin-top: 14vh;">
+        <div class="card-body container-fluid">
+          <div class="row row-cols-4 w-100">
+            <div class="col-6 d-flex flex-column justify-content-center align-items-center text-bg-secondary">
+              <img class="img-fluid" style="height: 220px;" src="../img/home.jpg" alt=""><br>
+              <a class="nav-link"
+                href="https://br.freepik.com/vetores-gratis/publicar-ilustracao-do-conceito-do-artigo_12704404.htm#from_view=detail_alsolike">Imagem
+                de storyset</a> no Freepik
+            </div>
+            <div class="row col-6 g-2 justify-content-evenly">
+              <h4 class="fs-2 mb-2 col-12 text-center" style="color: rgb(255, 125, 89);">Artigos</h4>
+              <% articles.forEach( article=> { %>
+                <div class="card col-5 m-1">
+                  <div class="card-header">
+                    <h1 class="fs-5">
+                      <%= article.title %>
+                    </h1>
+                  </div>
+                  <div class="card-body align-items-end">
+                    <a href="/<%= article.slug %>" style="border: 1px solid rgb(255, 125, 89);" class="btn" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';">Ler artigo</a>
+                  </div>
+                </div>
+                <br>
+                <% }) %>
+
+                  <div class="row">
+                    <div class="col col-12">
+                      <a class="btn" style="float: right;" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" href="/articles/page/2">Next >></a>
+                    </div>
+                    <br>
+                  </div>
+                  <br>
+            </div>
           </div>
         </div>
-        <br>
-      <% }) %>
 
-      <div class="row">
-        <div class="col col-12">
-          <a style="float: right;" href="/articles/page/2">Next >></a>
-        </div>
-        <br>
       </div>
-      <br>
-    </div>
-  </body>
 
-  <%- include("partials/footer.ejs") %>
+
+    </body>
+
+    <%- include("partials/footer.ejs") %>
