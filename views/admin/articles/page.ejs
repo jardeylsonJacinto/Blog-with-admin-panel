@@ -2,36 +2,37 @@
   <%- include("../../partials/homeNavbar.ejs") %>
 
     <body class="text-bg-dark" style="background-image: url('../../img/SvWWN.png'); background-size: cover;">
-      <div class="container card w-100 shadow" style="margin-top: 2vh;">
-        <div class="card-header">
-
-        </div>
-        <div class="card-doby">
+      <div class="container card w-100 shadow mb-3" style="margin-top: 2vh;">
+        <h4 class="fs-1 col-12 text-center mt-2" style="color: rgb(255, 125, 89);">Artigos</h4>
+        <div class="card-doby row justify-content-around">
           <% result.articles.rows.forEach( article=> { %>
-            <div class="card mt-2">
+            <div class="card col-5 my-2">
               <div class="card-header">
-                <h2>
+                <h1 class="fs-5">
                   <%= article.title %>
-                </h2>
+                </h1>
               </div>
-              <div class="card-body">
-                <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+              <div class="card-body d-flex">
+                <a href="/<%= article.slug %>" style="border: 1px solid rgb(255, 125, 89);" class="btn"
+                  onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';"
+                  onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';">Ler
+                  artigo</a>
               </div>
             </div>
-            <br>
+
             <% }) %>
               <div class="row">
                 <div class="col col-12">
 
                   <% if(result.page> 2) { %>
-                    <a style="float: left;" href="/articles/page/<%= result.page - 1 %>">
+                    <a class="btn mb-2" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" style="float: left;" href="/articles/page/<%= result.page - 1 %>">
                       << Prev</a>
                   <% } else if(result.page==2) { %>
-                      <a class="btn mt-2" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" style="float: left;" href="/">
+                      <a class="btn mb-2" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" style="float: left;" href="/">
                         << Prev</a>
                       <% } %>
                   <% if(result.next) { %>
-                    <a class="btn mt-2" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" style="float: right;" href="/articles/page/<%= result.page + 1%>">Next >></a>
+                    <a class="btn mb-2" onmouseover="this.style.backgroundColor='rgb(255, 125, 89)'; this.style.color= 'white';" onmouseout="this.style.backgroundColor='rgb(255,255,255)'; this.style.color= 'black';" style="float: right;" href="/articles/page/<%= result.page + 1%>">Next >></a>
                   <% } %>
                 </div>
                 <br>
