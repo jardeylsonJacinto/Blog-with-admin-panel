@@ -4,10 +4,10 @@
     <div class="container">
       <hr>
       <h2>Categorias</h2>
-      <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
+      <a class="btn btn-outline-success" href="/admin/categories/new">Criar nova categoria</a>
       <hr>
 
-      <table class="table table-dark table-striped">
+      <table class="table table-secondary table-striped">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -30,7 +30,7 @@
               </td>
               <td>
 
-                <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-outline-warning"><ion-icon
+                <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-outline-primary"><ion-icon
                     size="small" name="create-outline"></ion-icon>Editar</a>
 
                 <form method="POST" action="/categories/delete" style="display: inline;"
